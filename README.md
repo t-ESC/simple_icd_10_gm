@@ -37,74 +37,10 @@ The scope of this library is to provide a simple instrument for dealing with ICD
 The codes and their descriptions were taken from [this page](# simple_icd_10
 A simple python library for ICD-10 codes
 
-## Index
-* [Release notes](#release-notes)
-* [Introduction](#introduction)
-* [Setup](#setup)
-* [What a code is and how it looks like](#what-a-code-is-and-how-it-looks-like)
-* [Documentation](#documentation)
-  * [is_valid_item(code)](#is_valid_itemcode)
-  * [is_category_or_subcategory(code)](#is_category_or_subcategorycode)
-  * [is_chapter_or_block(code)](#is_chapter_or_blockcode)
-  * [is_chapter(code)](#is_chaptercode)
-  * [is_block(code)](#is_blockcode)
-  * [is_category(code)](#is_categorycode)
-  * [is_subcategory(code)](#is_subcategorycode)
-  * [get_description(code)](#get_descriptioncode)
-  * [get_parent(code)](#get_parentcode)
-  * [get_children(code)](#get_childrencode)
-  * [get_ancestors(code)](#get_ancestorscode)
-  * [get_descendants(code)](#get_descendantscode)
-  * [is_ancestor(a,b)](#is_ancestorab)
-  * [is_descendant(a,b)](#is_descendantab)
-  * [get_nearest_common_ancestor(a,b)](#get_nearest_common_ancestorab)
-  * [is_leaf(code)](#is_leafcode)
-  * [get_all_codes(with_dots=True)](#get_all_codeswith_dotstrue)
-  * [get_index(code)](#get_indexcode)
-  * [remove_dot(code)](#remove_dotcode)
-  * [add_dot(code)](#add_dotcode)
-* [Conclusion](#conclusion)
-
-## Release notes
-* **2.0.1**: Fixed a minor bug that affected get_nearest_common_ancestor(a,b) when a and b were the same code but written in different formats.
-* **2.0.0**: **Major update**
-  * Completely rewritten the library, making the code simpler, easier to understand and customize and less prone to errors!
-  * **Important**: from now on, the default format of the codes returned by the functions in this library will be the one **with** the dot instead of the one **without** the dot. Please consider how this could impact your project before updating the package.
-  * The results of "get_descendants" are now always ordered.
-  * The argument in "get_all_codes" (now renamed to "with_dots") is now optional and is True by default.
-  * **Removed the memoization**: thanks to the new implementation of the library, memoization is no longer needed.
-* **1.6.3**: Fixed a bug relative to the descendants of block "X85-Y09".
-* **1.6.2**: Fixed a bug that caused incorrect results when working with some of the codes in chapter XX.
-* **1.6.1**: Added functions that were missing from release 1.6.0.
-* **1.6.0**: Added the functions "get_parent", "get_children", "remove_dot" and "add_dot". These functions could be optimized for better performance: contact me if you feel that such improvement is needed.
-* **1.5.0**: Added the function "is_leaf", renamed the function "is_valid_code" to "is_category_or_subcategory" (the old name can still be used for backward compatibility), removed from the README a section rendered obsolete by this renaming.
-* **1.4.0**: Added the functions "is_chapter", "is_block", "is_category" and "is_subcategory"
-* **1.3.2**: Re-relase of the previous version (pretend this doesn't exist)
-* **1.3.1**: Huge performance improvements, bug fix
-* **1.3.0**: Additional major performance improvements
-* **1.2.1**: Minor fix to ensure the integrity of the data
-* **1.2.0**: Added memoization to achieve high performance improvements
-* **1.1**: Added the function "get_nearest_common_ancestor"
-* **1.0**: Initial release
-
 ## Introduction
 The scope of this library is to provide a simple instrument for dealing with ICD-10 codes in your Python projects. It provides ways to check whether a code exists, to find its ancestors and descendants, to see its description and much more.  
-The codes and their descriptions were taken from [this page](https://icd.who.int/browse10/2019/en#) in the WHO's website and are referred to the **2019 version of ICD-10**.  
-If you are looking for a library that deals with ICD-10-CM codes instead of ICD-10 codes, you can check the [simple_icd_10_CM library](https://github.com/StefanoTrv/simple_icd_10_CM).  
-There is also a Java version of this library, [SimpleICD10-Java-edition](https://github.com/StefanoTrv/SimpleICD10-Java-edition).
-
-You can find all the codes and their descriptions in plain text in the ["data" folder](https://github.com/StefanoTrv/simple_icd_10/tree/master/data), as well as an XML file that contains the entire ICD-10 classification.
-
-## Setup
-You can either use the "simple_icd_10.py" file, which contains all the source code, in conjunction with the XML file in the "data" folder (you can find them in the [GitHub repository](https://github.com/StefanoTrv/simple_icd_10)), or install the package with pip, using this command:
-```bash
-pip install simple-icd-10
-```
-
-If you prefer conda, you can install the package using the following command:
-```bash
-conda install -c stefanotrv simple_icd_10 
-```
+The codes and their descriptions were taken from [this page](https://www.bfarm.de/DE/Kodiersysteme/Klassifikationen/ICD/ICD-10-GM/_node.html) in the WHO's website and are referred to the **2019 version of ICD-10**.  
+If you are looking for a library that deals with ICD-10-CM codes instead of ICD-10 codes, you can check the [simple_icd_10_CM library].  
 
 ## What a code is and how it looks like
 We need to start by clarifying what a code is for us. The [ICD-10 instruction manual](https://icd.who.int/browse10/Content/statichtml/ICD10Volume2_en_2019.pdf) makes a distinction between **chapters**, **block of categories**, **three-character categories** and **four-character subcategories** (which from now on we'll refer to as chapters, blocks, categories and subcategories), with a few additional five-character subcategories: we will consider all these items as codes.
