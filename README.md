@@ -219,7 +219,4 @@ icd.add_dot("G10-G14")
 This is everything you needed to know before using the simple_icd_10 library - please contact me if you feel I missed something or there's some passage that you think should be explained better or more. Also contact me if you find any errors in the library or in the documentation.  
 I hope this library will save you some time; it definitely would have done it for me if I hadn't had to write it!
 
-If you are feeling particularly thankful and/or generous and feel like leaving me a tip, **don't!**  
-Donate instead to *Médecins Sans Frontières* to support their efforts to provides medical care to millions of people caught in crises around the world. Click on the logo below to open their "donate" page.
-
 [![MSF Logo](https://www.msf.org/themes/custom/msf_theme/src/kss/components/icons/assets/logo-white-en.svg)](https://www.msf.org/donate)) in the WHO's website and are referred to the **2023 version of ICD-10-GM**.
