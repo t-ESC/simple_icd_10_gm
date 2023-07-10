@@ -5,7 +5,7 @@ except ImportError:
     # Try backported to PY<37 `importlib_resources`.
     import importlib_resources as pkg_resources
 
-import data
+import data_tree
 
 chapter_list = []
 
@@ -42,7 +42,7 @@ class _CodeTree:
 
 def _load_codes():
     #creates the tree
-    root = ET.fromstring(pkg_resources.read_text(data, 'icd_tree_2.xml'))
+    root = ET.fromstring(pkg_resources.read_text(data_tree, 'icd_tree_2.xml'))
     for child in root:
         chapter_list.append(_CodeTree(child))
 
