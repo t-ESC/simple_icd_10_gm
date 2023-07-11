@@ -1,0 +1,17 @@
+{% set name = "simple_icd_10_gm" %}
+{% set version = "1.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  path: ../src/
+  path: ../setup.py
+
+requirements:
+  run:
+    - python
+
+about:
+  summary: Eine einfaches Modul zur Handhabung von ICD-Codes

@@ -1,11 +1,8 @@
 import xml.etree.ElementTree as ET
-try:
-    import importlib.resources as pkg_resources
-except ImportError:
-    # Try backported to PY<37 `importlib_resources`.
-    import importlib_resources as pkg_resources
+import os
 
-import data_tree
+current_path = os.path.dirname(os.path.abspath(__file__))
+xml_path = os.path.join(current_path, 'data_tree/', 'icd_tree_2.xml')
 
 chapter_list = []
 
@@ -42,7 +39,9 @@ class _CodeTree:
 
 def _load_codes():
     #creates the tree
-    root = ET.fromstring(pkg_resources.read_text(data_tree, 'icd_tree_2.xml'))
+    with open(xml_path) as xml_file:
+        xml_string = xml_file.read()
+    root = ET.fromstring(xml_string)
     for child in root:
         chapter_list.append(_CodeTree(child))
 
