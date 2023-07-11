@@ -6,7 +6,8 @@ package:
   version: "{{ version }}"
 
 source:
-  path: .
+  path: ../src/
+  path: ../setup.py
 
 requirements:
   run:
