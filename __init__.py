@@ -1,11 +1,4 @@
 import xml.etree.ElementTree as ET
-try:
-    import importlib.resources as pkg_resources
-except ImportError:
-    # Try backported to PY<37 `importlib_resources`.
-    import importlib_resources as pkg_resources
-
-#import data_tree
 import os
 
 current_path = os.path.dirname(os.path.abspath(__file__))
