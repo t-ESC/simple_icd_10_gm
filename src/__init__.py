@@ -213,3 +213,19 @@ def add_dot(code):
         for chapter in chapter_list:
             _add_tree_to_list(chapter)
     return all_codes_list[get_index(code)]
+
+def get_chapter(icdp:str):
+    if is_valid_item(icdp):
+        return next((icdp for icdp in [icdp] + get_ancestors(icdp) if is_chapter(icdp)), None)
+    
+def get_block(icdp:str):
+    if is_valid_item(icdp):
+        return [icdp for icdp in [icdp] + get_ancestors(icdp) if is_valid_item(icdp)]
+    
+def get_chapter(icdp:str):
+    if is_valid_item(icdp):
+        return next((icdp for icdp in [icdp] + get_ancestors(icdp) if is_category(icdp)), None)
+    
+def get_chapter(icdp:str):
+    if is_valid_item(icdp):
+        return next((icdp for icdp in [icdp] + get_ancestors(icdp) if is_subcategory(icdp)), None)
