@@ -220,7 +220,7 @@ def get_chapter(icdp:str):
     
 def get_block(icdp:str):
     if is_valid_item(icdp):
-        return [icdp for icdp in [icdp] + get_ancestors(icdp) if is_valid_item(icdp)]
+        return [icdp for icdp in [icdp] + get_ancestors(icdp) if is_block(icdp)]
     
 def get_category(icdp:str):
     if is_valid_item(icdp):
